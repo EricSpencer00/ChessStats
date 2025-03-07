@@ -146,13 +146,14 @@ def user():
 
     # Fetch the stats data from Chess.com.
     stats_url = BASE_STATS_URL.format(username)
-    stats_response = requests.get(stats_url)
+    stats_response = requests.get(stats_url, headers=headers)
     # If the stats endpoint returns an error, we simply show an empty dict.
     if stats_response.status_code != 200:
         stats_data = {}
         print("Error:", stats_response.text)
     else:
         stats_data = stats_response.json()
+        print("Stats data:", stats_data)
 
     print("Stats URL:", stats_url)
     print(stats_data)
